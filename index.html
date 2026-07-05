@@ -6,7 +6,6 @@
   <title>TRUE SPACES</title>
   <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="biblioteca.js"></script>
   <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root,[data-theme=light]{color-scheme:light;font-size:clamp(15px,3.8vw,18px);--mono:"Courier New",monospace;--serif:Georgia,serif;--c-bg:#f5f3ec;--c-bg-outer:#ebe9e1;--c-card:#fff;--c-ink:#1a1a1a;--c-mute:#888;--c-edge:#e8e4dc;--c-border:#111;--c-surface:#fafaf8;--c-surface-alt:#f5f3ec;--c-arc:#e8e4dc;--c-bar:#0d0d0d;--c-bar-muted:#666;--c-bar-faint:#444;--c-overlay:rgba(0,0,0,.65);--c-modal:#fff;--c-input-bg:#fafaf8;--c-input-border:#ddd;--c-focus:#111;--c-toast-bg:#111;--c-toast-fg:#fff;--c-approx-bg:#faf6e8;--c-approx-border:#e8d9a8;--c-approx-fg:#8a7340;--c-error-bg:#fff8f7;--c-error-border:#f5c6c2;--c-error-fg:#c0392b;--c-retro-bg:#fff0ee;--c-retro-border:#f5c6c2;--c-shadow:rgba(0,0,0,.1);--c-top-h:76px;--c-bot-h:66px;--live:#1d9e75;--custom:#3d5a8a;--cat-transpersonal:#7f77dd;--cat-social:#ba7517;--cat-personal:#1d9e75}
@@ -45,20 +44,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
 .error-panel{margin:1.5rem 1.1rem;padding:1.1rem;border:1px solid var(--c-error-border);border-radius:12px;background:var(--c-error-bg);text-align:center}.error-panel .error-title{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(--c-error-fg);margin-bottom:.5rem}.error-panel .error-msg{font-size:.74rem;color:var(--c-mute);margin-bottom:.75rem;line-height:1.5}.btn-retry{background:var(--c-border);color:var(--c-card);border:none;border-radius:8px;padding:.55rem 1rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;cursor:pointer;min-height:44px}[data-theme=dark] .btn-retry{color:#111}.field-error{font-size:.58rem;color:var(--c-error-fg);font-family:var(--mono);letter-spacing:.04em;margin-top:.25rem}
 .top-actions{display:flex;gap:.45rem;align-items:center;flex-shrink:0}.btn-icon-only{background:var(--c-surface-alt);border:1px solid var(--c-edge);border-radius:10px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.15rem;font-family:var(--mono);color:var(--c-ink);transition:background .15s,border-color .15s}.btn-icon-only:hover{background:var(--c-edge)}.btn-icon-only:disabled{opacity:.4;cursor:not-allowed}.btn-theme{font-size:1rem;letter-spacing:0}.app-footer details{cursor:pointer}.app-footer summary{list-style:none;color:var(--c-mute)}.app-footer summary::-webkit-details-marker{display:none}.app-footer details[open] summary{margin-bottom:.35rem}
 @media (prefers-reduced-motion:reduce){.bar-dot{animation:none}.toast,button,.btn-date,.btn-share,.prog{transition:none}}
-[data-body],[data-const]{cursor:pointer;transition:opacity .15s}[data-body]:active,[data-const]:active{opacity:.55}
-.bib-box{max-height:82vh;display:flex;flex-direction:column}
-.bib-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.15rem}.bib-sym{font-size:1.7rem;line-height:1;color:var(--c-ink)}.bib-name{margin-bottom:0}
-.bib-scroll{overflow-y:auto;margin:.75rem 0 1.1rem;padding-right:.2rem}
-.bib-domain{font-size:.82rem;line-height:1.6;color:var(--c-ink);margin-bottom:.7rem}
-.bib-origin{font-size:.72rem;line-height:1.6;color:var(--c-mute);margin-bottom:.7rem;font-family:var(--mono)}.bib-origin b{color:var(--c-ink);font-weight:700}
-.bib-consensus{font-size:.62rem;font-family:var(--mono);letter-spacing:.03em;line-height:1.6;color:var(--c-approx-fg);background:var(--c-approx-bg);border:1px solid var(--c-approx-border);border-radius:8px;padding:.55rem .7rem;margin-bottom:1rem}
-.bib-section-label{font-size:.6rem;letter-spacing:.14em;color:var(--c-mute);font-family:var(--mono);text-transform:uppercase;margin:0 0 .5rem;border-top:.5px solid var(--c-edge);padding-top:.85rem}
-.bib-voice{padding-bottom:.75rem;margin-bottom:.75rem;border-bottom:.5px solid var(--c-edge)}.bib-voice:last-child{border-bottom:none;margin-bottom:0}
-.bib-voice-head{font-size:.62rem;font-family:var(--mono);letter-spacing:.04em;color:var(--c-mute);margin-bottom:.3rem}.bib-voice-head b{color:var(--c-ink)}
-.bib-voice-text{font-size:.78rem;line-height:1.55;color:var(--c-ink);margin-bottom:.3rem}
-.bib-voice-src{font-size:.6rem;line-height:1.5;color:var(--c-mute);font-style:italic}
-.bib-contra{font-size:.75rem;line-height:1.55;color:var(--c-ink);margin-bottom:.55rem;padding-left:.9rem;position:relative}.bib-contra:before{content:"—";position:absolute;left:0;color:var(--c-mute)}
-.bib-empty{font-size:.7rem;color:var(--c-mute);font-family:var(--mono);text-align:center;padding:1.5rem 0}
   </style>
 </head>
 <body>
@@ -132,30 +117,17 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     </div>
   </div>
 
-  <div class="modal-overlay" id="bib-modal" role="presentation" aria-hidden="true">
-    <div class="modal-box bib-box" role="dialog" aria-modal="true" aria-labelledby="bib-title">
-      <div class="bib-head">
-        <span class="bib-sym" id="bib-sym" aria-hidden></span>
-        <h2 id="bib-title" class="modal-title bib-name"></h2>
-      </div>
-      <div class="bib-scroll" id="bib-content"></div>
-      <div class="modal-actions">
-        <button type="button" class="btn-cancel" id="bib-close-btn">CERRAR</button>
-      </div>
-    </div>
-  </div>
-
   <script>
 (() => {
   const UI = {refresh:"↻",live:"◎",date:"◷",download:"↓",loading:"…",earth:"⊕",retro:"℞",arrow:"→",themeLight:"○",themeDark:"●",ok:"+",fail:"×"};
   const IAU = [
-    {name:"Aries",short:"Aries",sym:"♈︎",start:29,end:53.5},{name:"Taurus",short:"Taurus",sym:"♉︎",start:53.5,end:90.2},
-    {name:"Gemini",short:"Gemini",sym:"♊︎",start:90.2,end:118.1},{name:"Cancer",short:"Cancer",sym:"♋︎",start:118.1,end:138.2},
-    {name:"Leo",short:"Leo",sym:"♌︎",start:138.2,end:173.9},{name:"Virgo",short:"Virgo",sym:"♍︎",start:173.9,end:218},
-    {name:"Libra",short:"Libra",sym:"♎︎",start:218,end:241},{name:"Scorpius",short:"Scorpius",sym:"♏︎",start:241,end:247.7},
-    {name:"Ophiuchus",short:"Ophiuch.",sym:"⛎︎",start:247.7,end:266.3},{name:"Sagittarius",short:"Sagitt.",sym:"♐︎",start:266.3,end:299.7},
-    {name:"Capricornus",short:"Capric.",sym:"♑︎",start:299.7,end:327.6},{name:"Aquarius",short:"Aquarius",sym:"♒︎",start:327.6,end:348.7},
-    {name:"Pisces",short:"Pisces",sym:"♓︎",start:348.7,end:389}
+    {name:"Aries",short:"Aries",sym:"♈️",start:29,end:53.5},{name:"Taurus",short:"Taurus",sym:"♉️",start:53.5,end:90.2},
+    {name:"Gemini",short:"Gemini",sym:"♊️",start:90.2,end:118.1},{name:"Cancer",short:"Cancer",sym:"♋️",start:118.1,end:138.2},
+    {name:"Leo",short:"Leo",sym:"♌️",start:138.2,end:173.9},{name:"Virgo",short:"Virgo",sym:"♍️",start:173.9,end:218},
+    {name:"Libra",short:"Libra",sym:"♎️",start:218,end:241},{name:"Scorpius",short:"Scorpius",sym:"♏️",start:241,end:247.7},
+    {name:"Ophiuchus",short:"Ophiuch.",sym:"⛎",start:247.7,end:266.3},{name:"Sagittarius",short:"Sagitt.",sym:"♐️",start:266.3,end:299.7},
+    {name:"Capricornus",short:"Capric.",sym:"♑️",start:299.7,end:327.6},{name:"Aquarius",short:"Aquarius",sym:"♒️",start:327.6,end:348.7},
+    {name:"Pisces",short:"Pisces",sym:"♓️",start:348.7,end:389}
   ];
   const PLANETS = [
     {key:"Pluto",name:"Pluto",sym:"♇",cat:"transpersonal"},{key:"Neptune",name:"Neptune",sym:"♆",cat:"transpersonal"},
@@ -172,8 +144,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     html: document.documentElement, body: document.body, top:$(".sticky-top"), bot:$(".sticky-bar"), card:$(".card"), diorama:$("#diorama"),
     context:$(".top-context"), toast:$(".toast"), theme:$(".btn-theme"), live:$(".btn-mode"), date:$(".btn-date"), share:$(".btn-share"),
     modal:$(".modal-overlay"), inputDate:$("#input-date"), inputTime:$("#input-time"), dateError:$("#date-error"),
-    cancel:$(".btn-cancel"), go:$(".btn-go"), barTime:$(".bar-time"), barDate:$(".bar-date"), barTz:$(".bar-tz"),
-    bibModal:$("#bib-modal"), bibSym:$("#bib-sym"), bibTitle:$("#bib-title"), bibContent:$("#bib-content"), bibClose:$("#bib-close-btn")
+    cancel:$(".btn-cancel"), go:$(".btn-go"), barTime:$(".bar-time"), barDate:$(".bar-date"), barTz:$(".bar-tz")
   };
 
   let mounted = false, mode = "live", targetDate = null, isApproximate = false, positions = null, error = null, theme = "light", shareLoading = false;
@@ -253,67 +224,10 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     const degreeLabel = approx ? `~${p.degree}°` : `${p.degree}°`;
     const aria = `${p.name}, ${p.constellation.name} ${degreeLabel}${p.retro ? ", retrógrado" : ""}, próximo signo ${p.nextConst.name}`;
     return `<div class="row${p.retro ? " is-retro" : ""}" aria-label="${esc(aria)}">
-      <div class="sign${ac}" data-const="${esc(p.constellation.name)}" role="button" tabindex="0" aria-label="Ver ficha de ${esc(p.constellation.name)}"><span class="s-sym" aria-hidden>${p.constellation.sym}</span><span class="s-name">${esc(p.constellation.short)}</span></div>
-      <div class="planet" data-body="${esc(p.key)}" role="button" tabindex="0" aria-label="Ver ficha de ${esc(p.name)}"><span class="p-sym cat-${p.cat}" aria-hidden>${p.sym}</span><span class="p-name">${esc(p.name)}</span>${p.retro ? `<span class="retro-badge">${UI.retro} retrógrado</span>` : ""}<span class="p-deg">${degreeLabel}</span><div class="prog-wrap" role="presentation"><div class="prog" style="width:${p.pct.toFixed(0)}%;background:${meta.color}"></div></div></div>
-      <div class="sign r${ac}" data-const="${esc(p.nextConst.name)}" role="button" tabindex="0" aria-label="Ver ficha de ${esc(p.nextConst.name)}"><span class="s-sym" aria-hidden>${p.nextConst.sym}</span><span class="s-name">${esc(p.nextConst.short)}</span></div>
+      <div class="sign${ac}"><span class="s-sym" aria-hidden>${p.constellation.sym}</span><span class="s-name">${esc(p.constellation.short)}</span></div>
+      <div class="planet"><span class="p-sym cat-${p.cat}" aria-hidden>${p.sym}</span><span class="p-name">${esc(p.name)}</span>${p.retro ? `<span class="retro-badge">${UI.retro} retrógrado</span>` : ""}<span class="p-deg">${degreeLabel}</span><div class="prog-wrap" role="presentation"><div class="prog" style="width:${p.pct.toFixed(0)}%;background:${meta.color}"></div></div></div>
+      <div class="sign r${ac}"><span class="s-sym" aria-hidden>${p.nextConst.sym}</span><span class="s-name">${esc(p.nextConst.short)}</span></div>
     </div>${showArc ? arcSVG() : ""}`;
-  }
-  function voiceHTML(v) {
-    const src = v.fuente && !/^sin cita/i.test(v.fuente) ? `<p class="bib-voice-src">${esc(v.fuente)}${v.tipo_fuente ? ` · ${esc(v.tipo_fuente)}` : ""}</p>` : "";
-    return `<div class="bib-voice">
-      <p class="bib-voice-head"><b>${esc(v.tradicion)}</b> · ${esc(v.periodo)}</p>
-      <p class="bib-voice-text">${esc(v.planteamiento)}</p>
-      ${src}
-    </div>`;
-  }
-  function fichaBodyHTML(entry) {
-    if (!entry) return `<p class="bib-empty">Todavía sin biblioteca para este cuerpo.</p>`;
-    let html = "";
-    if (entry.origen) {
-      html += `<p class="bib-origin"><b>Origen:</b> ${esc(entry.origen.nombres_antiguos)}<br>${esc(entry.origen.figura)}</p>`;
-    }
-    html += `<p class="bib-domain">${esc(entry.dominio.descripcion)}</p>`;
-    if (entry.dominio.consenso_independiente) {
-      const c = entry.dominio.consenso_independiente;
-      html += `<p class="bib-consensus">${c.existe ? "◈ Convergencia independiente: " : "○ Sin convergencia independiente: "}${esc(c.detalle)}</p>`;
-    }
-    if (entry.voces_historicas && entry.voces_historicas.length) {
-      html += `<p class="bib-section-label">Voces históricas</p>` + entry.voces_historicas.map(voiceHTML).join("");
-    }
-    if (entry.contradicciones && entry.contradicciones.length) {
-      html += `<p class="bib-section-label">Contradicciones identificadas</p>` + entry.contradicciones.map(c => `<p class="bib-contra">${esc(c)}</p>`).join("");
-    }
-    return html;
-  }
-  function openBibModal(sym, name, entry) {
-    el.bibSym.textContent = sym;
-    el.bibTitle.textContent = name;
-    el.bibContent.innerHTML = fichaBodyHTML(entry);
-    el.bibModal.classList.add("open");
-    el.bibModal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-  }
-  function closeBibModal() {
-    el.bibModal.classList.remove("open");
-    el.bibModal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-  }
-  function handleDioramaClick(e) {
-    const bodyEl = e.target.closest("[data-body]");
-    if (bodyEl) {
-      const key = bodyEl.getAttribute("data-body");
-      const p = PLANETS.find(x => x.key === key);
-      const entry = typeof BIBLIOTECA_CUERPOS !== "undefined" ? BIBLIOTECA_CUERPOS[key] : null;
-      openBibModal(p ? p.sym : "", p ? p.name : key, entry);
-      return;
-    }
-    const constEl = e.target.closest("[data-const]");
-    if (constEl) {
-      const name = constEl.getAttribute("data-const");
-      const c = IAU.find(x => x.name === name);
-      const entry = typeof BIBLIOTECA_CONSTELACIONES !== "undefined" ? BIBLIOTECA_CONSTELACIONES[name] : null;
-      openBibModal(c ? c.sym : "", entry ? entry.nombre : name, entry);
-    }
   }
   function setToast(msg, duration = 2800) {
     clearTimeout(toastTimer);
@@ -503,14 +417,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     el.inputDate.setAttribute("aria-invalid", "false");
   });
   el.modal.addEventListener("click", e => { if (e.target === el.modal) closeModal(); });
-  el.diorama.addEventListener("click", handleDioramaClick);
-  el.bibClose.addEventListener("click", closeBibModal);
-  el.bibModal.addEventListener("click", e => { if (e.target === el.bibModal) closeBibModal(); });
-  window.addEventListener("keydown", e => {
-    if (e.key !== "Escape") return;
-    if (el.bibModal.classList.contains("open")) { closeBibModal(); return; }
-    closeModal();
-  });
+  window.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
   applyTheme(getStoredTheme());
   mounted = true;
