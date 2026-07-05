@@ -6,10 +6,11 @@
   <title>TRUE SPACES</title>
   <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="biblioteca.js"></script>
   <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root,[data-theme=light]{color-scheme:light;font-size:clamp(15px,3.8vw,18px);--mono:"Courier New",monospace;--serif:Georgia,serif;--c-bg:#f5f3ec;--c-bg-outer:#ebe9e1;--c-card:#fff;--c-ink:#1a1a1a;--c-mute:#888;--c-edge:#e8e4dc;--c-border:#111;--c-surface:#fafaf8;--c-surface-alt:#f5f3ec;--c-arc:#e8e4dc;--c-bar:#0d0d0d;--c-bar-muted:#666;--c-bar-faint:#444;--c-overlay:rgba(0,0,0,.65);--c-modal:#fff;--c-input-bg:#fafaf8;--c-input-border:#ddd;--c-focus:#111;--c-toast-bg:#111;--c-toast-fg:#fff;--c-approx-bg:#faf6e8;--c-approx-border:#e8d9a8;--c-approx-fg:#8a7340;--c-error-bg:#fff8f7;--c-error-border:#f5c6c2;--c-error-fg:#c0392b;--c-retro-bg:#fff0ee;--c-retro-border:#f5c6c2;--c-shadow:rgba(0,0,0,.1);--c-top-h:76px;--c-bot-h:66px;--live:#1d9e75;--custom:#3d5a8a;--cat-transpersonal:#7f77dd;--cat-social:#ba7517;--cat-personal:#1d9e75}
-[data-theme=dark]{color-scheme:dark;--c-bg:#0f0f10;--c-bg-outer:#080809;--c-card:#1a1a1c;--c-ink:#f0ede6;--c-mute:#9a9590;--c-edge:#2e2e32;--c-border:#e8e4dc;--c-surface:#222224;--c-surface-alt:#18181a;--c-arc:#3a3a40;--c-bar:#000;--c-bar-muted:#888;--c-bar-faint:#555;--c-overlay:rgba(0,0,0,.82);--c-modal:#1e1e21;--c-input-bg:#141416;--c-input-border:#3a3a40;--c-focus:#e8e4dc;--c-toast-bg:#e8e4dc;--c-toast-fg:#111;--c-approx-bg:#2a2818;--c-approx-border:#4a4428;--c-approx-fg:#c8b878;--c-error-bg:#2a1818;--c-error-border:#5a3030;--c-error-fg:#e88a80;--c-retro-bg:#2a1a1a;--c-retro-border:#5a3535;--c-shadow:rgba(0,0,0,.45);--live:#2bb88a;--custom:#5a7ab0}
+:root,[data-theme=light]{color-scheme:light;font-size:clamp(15px,3.8vw,18px);--mono:"Courier New",monospace;--serif:Georgia,serif;--c-bg:#f5f3ec;--c-bg-outer:#ebe9e1;--c-card:#fff;--c-ink:#1a1a1a;--c-mute:#888;--c-edge:#e8e4dc;--c-border:#111;--c-surface:#fafaf8;--c-surface-alt:#f5f3ec;--c-arc:#e8e4dc;--c-bar:#0d0d0d;--c-bar-muted:#666;--c-bar-faint:#444;--c-overlay:rgba(0,0,0,.65);--c-modal:#fff;--c-input-bg:#fafaf8;--c-input-border:#ddd;--c-focus:#111;--c-toast-bg:#111;--c-toast-fg:#fff;--c-approx-bg:#faf6e8;--c-approx-border:#e8d9a8;--c-approx-fg:#8a7340;--c-error-bg:#fff8f7;--c-error-border:#f5c6c2;--c-error-fg:#c0392b;--c-shadow:rgba(0,0,0,.1);--c-top-h:76px;--c-bot-h:66px;--live:#1d9e75;--custom:#3d5a8a;}
+[data-theme=dark]{color-scheme:dark;--c-bg:#0f0f10;--c-bg-outer:#080809;--c-card:#1a1a1c;--c-ink:#f0ede6;--c-mute:#9a9590;--c-edge:#2e2e32;--c-border:#e8e4dc;--c-surface:#222224;--c-surface-alt:#18181a;--c-arc:#3a3a40;--c-bar:#000;--c-bar-muted:#888;--c-bar-faint:#555;--c-overlay:rgba(0,0,0,.82);--c-modal:#1e1e21;--c-input-bg:#141416;--c-input-border:#3a3a40;--c-focus:#e8e4dc;--c-toast-bg:#e8e4dc;--c-toast-fg:#111;--c-approx-bg:#2a2818;--c-approx-border:#4a4428;--c-approx-fg:#c8b878;--c-error-bg:#2a1818;--c-error-border:#5a3030;--c-error-fg:#e88a80;--c-shadow:rgba(0,0,0,.45);--live:#2bb88a;--custom:#5a7ab0}
 html{height:100%}
 body{background:var(--c-bg);font-family:var(--serif);color:var(--c-ink);min-height:100%;padding-top:calc(var(--c-top-h) + env(safe-area-inset-top,0px));padding-bottom:calc(var(--c-bot-h) + env(safe-area-inset-bottom,0px));transition:background .2s ease,color .2s ease}
 .card{background:var(--c-card);width:100%;max-width:560px;margin:0 auto;box-shadow:none;transition:background .2s ease}
@@ -17,49 +18,101 @@ body{background:var(--c-bg);font-family:var(--serif);color:var(--c-ink);min-heig
 .sticky-top{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--c-card);border-bottom:1.5px solid var(--c-border);padding-top:env(safe-area-inset-top,0px);box-shadow:0 2px 14px var(--c-shadow);transition:background .2s ease,border-color .2s ease}
 .top-inner{max-width:560px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;padding:.85rem 1.1rem .75rem;gap:.75rem}
 .top-label{font-size:.62rem;letter-spacing:.18em;color:var(--c-mute);font-family:var(--mono);margin-bottom:.25rem;text-transform:uppercase}
-.top-name{font-size:1.5rem;font-weight:700;color:var(--c-ink);line-height:1.05;font-family:var(--serif);margin:0;letter-spacing:.02em}
-.top-left p{margin:0}.top-context{font-size:.62rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.05em;margin-top:.28rem}.sym{font-family:var(--mono);line-height:1}
-.btn-date,.btn-mode{border-radius:10px;padding:.6rem .75rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;cursor:pointer;line-height:1.3;text-align:center;transition:background .2s,border-color .2s,color .2s,opacity .2s;white-space:nowrap;min-width:52px;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem}
+.top-name{font-size:1.65rem;font-weight:700;color:var(--c-ink);line-height:1.05;font-family:var(--serif);margin:0 0 .15rem;letter-spacing:.02em}
+.top-left p{margin:0}.top-label{font-size:.6rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.14em}
+.top-context{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.sym{font-family:var(--mono);line-height:1}
+.settings-menu{display:none;flex-direction:column;position:absolute;top:calc(100% - .5rem);right:1.1rem;background:var(--c-card);border:1px solid var(--c-edge);border-radius:14px;box-shadow:0 8px 28px var(--c-shadow);overflow:hidden;min-width:190px;z-index:210}
+.settings-menu.open{display:flex}
+.settings-item{display:flex;align-items:center;gap:.6rem;padding:.85rem 1rem;background:none;border:none;border-bottom:.5px solid var(--c-edge);font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;color:var(--c-ink);cursor:pointer;text-align:left;width:100%}
+.settings-item:last-child{border-bottom:none}
+.settings-item:active{background:var(--c-edge)}
+.settings-item[aria-pressed="true"]{color:var(--live);font-weight:700}
 .btn-date{background:var(--c-border);color:var(--c-card);border:none;padding:.6rem .9rem}.btn-mode{background:var(--c-surface-alt);color:var(--c-ink);border:1.5px solid var(--c-edge)}
-.btn-date .btn-icon,.btn-mode .btn-icon{font-size:1.05rem;display:block}.btn-mode.live-active{background:var(--live);color:#fff;border-color:var(--live)}.btn-date.date-active{background:var(--custom);color:#fff;border-color:var(--custom)}.btn-mode.spin .btn-icon{animation:spin-once .55s ease}
+.bar-earth.spin .sym{display:inline-block;animation:spin-once .55s ease}
 @keyframes spin-once{from{transform:rotate(0)}to{transform:rotate(360deg)}}#diorama.diorama-pulse{animation:diorama-pulse .45s ease}@keyframes diorama-pulse{0%{opacity:1}40%{opacity:.55}100%{opacity:1}}
 .col-hdrs{display:grid;grid-template-columns:1fr 1.5fr 1fr;padding:.6rem 1.1rem .5rem;border-bottom:.5px solid var(--c-edge);background:var(--c-surface)}.ch{font-size:.62rem;color:var(--c-mute);letter-spacing:.07em;font-family:var(--mono)}.ch.c{text-align:center}.ch.r{text-align:right}
-.cat{display:flex;align-items:center;gap:.45rem;padding:.8rem 1.1rem .3rem;font-size:.6rem;letter-spacing:.14em;color:var(--c-mute);font-family:var(--mono);border-top:.5px solid var(--c-edge);margin-top:.15rem;text-transform:uppercase}.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
 .row{display:grid;grid-template-columns:1fr 1.5fr 1fr;align-items:center;padding:.75rem 1.1rem .55rem}.sign{display:flex;flex-direction:column;gap:.12rem}.sign.r{align-items:flex-end;text-align:right}
-.s-sym{display:inline-flex;align-items:center;justify-content:center;min-width:2.35rem;padding:.2rem .35rem;font-size:2rem;font-weight:700;font-family:var(--mono);letter-spacing:.06em;line-height:1;color:var(--c-ink);opacity:.7;background:var(--c-surface-alt)}
-.s-name{display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.04em}.sign.approx .s-sym{color:var(--c-approx-fg);border-color:var(--c-approx-border);background:var(--c-approx-bg);font-style:normal}.sign.approx .s-name{color:var(--c-approx-fg);font-style:italic;opacity:.85}.sign.approx .s-name:before{content:"~ ";color:var(--c-approx-fg)}
+.s-sym{display:inline-flex;align-items:center;justify-content:center;min-width:2.35rem;padding:.2rem .35rem;font-size:2rem;font-weight:700;font-family:var(--mono);letter-spacing:.06em;line-height:1;color:var(--c-ink);opacity:.7}
+.s-sym.el-fuego{color:#C73A4A;opacity:1}.s-sym.el-tierra{color:#6D7C50;opacity:1}.s-sym.el-aire{color:#B78627;opacity:1}.s-sym.el-agua{color:#248692;opacity:1}.s-sym.el-ninguno{color:#7D5AA1;opacity:1}
+.s-name{display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.04em}.sign.approx .s-sym{color:var(--c-approx-fg);font-style:normal}.sign.approx .s-name{color:var(--c-approx-fg);font-style:italic;opacity:.85}.sign.approx .s-name:before{content:"~ ";color:var(--c-approx-fg)}
 .planet{display:flex;flex-direction:column;align-items:center;gap:.12rem}.p-sym{font-size:2rem;line-height:1.05;color:var(--c-ink)}.p-name{font-size:.78rem;font-weight:700;color:var(--c-ink);letter-spacing:.03em}.p-deg{font-size:.65rem;color:var(--c-mute);font-family:var(--mono)}
 .prog-wrap{width:3.5rem;height:4px;background:var(--c-edge);border-radius:2px;margin-top:.35rem;overflow:hidden}.prog{height:100%;border-radius:2px;transition:width .35s ease}.arc{display:block;width:100%;height:11px;overflow:visible}.arc path{stroke:var(--c-arc)}
 .msg{padding:2.25rem 1.1rem;text-align:center;font-size:.78rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.06em}
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--c-bar);padding-bottom:env(safe-area-inset-bottom,0px)}.bar-inner{max-width:560px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:.7rem 1.1rem .75rem}.bar-earth{font-size:.68rem;letter-spacing:.16em;font-family:var(--mono);color:#fff;display:flex;align-items:center;gap:.35rem}.bar-time{font-size:1.45rem;letter-spacing:.08em;font-family:var(--mono);color:#fff;font-weight:300;text-align:center;font-variant-numeric:tabular-nums}.bar-time--placeholder{opacity:.35}.bar-date{font-size:.6rem;color:var(--c-bar-muted);font-family:var(--mono);letter-spacing:.04em;text-align:right;line-height:1.6}.bar-tz{font-size:.54rem;color:var(--c-bar-faint);font-family:var(--mono);letter-spacing:.04em;text-align:right}.bar-dot{width:8px;height:8px;border-radius:50%;background:var(--live);flex-shrink:0;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--c-bar);padding-bottom:env(safe-area-inset-bottom,0px)}.bar-inner{max-width:560px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:.7rem 1.1rem .75rem}
+.bar-earth{font-size:.68rem;letter-spacing:.16em;font-family:var(--mono);color:#fff;display:flex;align-items:center;gap:.35rem;background:none;border:none;padding:.4rem .3rem .4rem 0;cursor:pointer;justify-self:start}
+.bar-earth:not([aria-pressed="true"]){color:var(--c-bar-muted)}
+.bar-date-block{background:none;border:none;padding:.4rem 0 .4rem .3rem;cursor:pointer;justify-self:end;text-align:right;border-radius:8px}
+.bar-date-block:active,.bar-earth:active{opacity:.6}
+.bar-time{font-size:1.45rem;letter-spacing:.08em;font-family:var(--mono);color:#fff;font-weight:300;text-align:center;font-variant-numeric:tabular-nums}.bar-time--placeholder{opacity:.35}.bar-date{font-size:.6rem;color:var(--c-bar-muted);font-family:var(--mono);letter-spacing:.04em;text-align:right;line-height:1.6}.bar-tz{font-size:.54rem;color:var(--c-bar-faint);font-family:var(--mono);letter-spacing:.04em;text-align:right}.bar-dot{width:8px;height:8px;border-radius:50%;background:var(--live);flex-shrink:0;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.bar-date-block.date-active .bar-date{color:#fff}.bar-earth[aria-pressed="true"] .bar-dot{animation:pulse 2s infinite}.bar-earth:not([aria-pressed="true"]) .bar-dot{animation:none;opacity:.3}
 .modal-overlay{position:fixed;inset:0;background:var(--c-overlay);display:none;justify-content:center;align-items:flex-end;z-index:300}.modal-overlay.open{display:flex}.modal-box{background:var(--c-modal);border-radius:20px 20px 0 0;padding:1.5rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom,0px));width:100%;max-width:560px;box-shadow:0 -4px 32px var(--c-shadow);color:var(--c-ink);transition:background .2s ease}.modal-box:before{content:"";display:block;width:2.5rem;height:4px;background:var(--c-edge);border-radius:2px;margin:0 auto .9rem}.modal-title{font-size:.92rem;font-weight:700;letter-spacing:.12em;font-family:var(--mono);margin-bottom:.35rem;color:var(--c-ink)}.modal-sub{font-size:.64rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.04em;margin-bottom:1.25rem;line-height:1.65}
 .field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.9rem}.field label{font-size:.62rem;letter-spacing:.1em;color:var(--c-mute);font-family:var(--mono)}.field input{border:1.5px solid var(--c-input-border);border-radius:10px;padding:.8rem .95rem;font-family:var(--mono);font-size:1rem;color:var(--c-ink);outline:none;transition:border .15s;background:var(--c-input-bg);min-height:48px}.field input:focus{border-color:var(--c-focus)}.field small{font-size:.58rem;color:var(--c-approx-fg);font-family:var(--mono);letter-spacing:.04em;line-height:1.5}
 .modal-actions{display:flex;gap:.6rem;margin-top:1.25rem}.modal-actions--dual .btn-cancel{flex:1}.modal-actions--dual .btn-go{flex:2}.btn-cancel{flex:1;background:var(--c-surface-alt);color:var(--c-ink);border:1px solid var(--c-edge);border-radius:10px;padding:.8rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.07em;cursor:pointer;min-height:48px}.btn-live{background:var(--live);color:#fff;border:none;border-radius:10px;padding:.8rem .9rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.06em;cursor:pointer;min-height:48px}.btn-go{flex:2;background:var(--c-border);color:var(--c-card);border:none;border-radius:10px;padding:.8rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.07em;cursor:pointer;min-height:48px}[data-theme=dark] .btn-go{color:#111}
-.app-footer{border-top:.5px solid var(--c-edge);padding:.75rem 1.1rem 1rem;text-align:center;font-size:.56rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.05em;line-height:1.8}.p-sym.cat-transpersonal{color:var(--cat-transpersonal)}.p-sym.cat-social{color:var(--cat-social)}.p-sym.cat-personal{color:var(--cat-personal)}
-.retro-badge{display:inline-block;font-size:.52rem;font-family:var(--mono);color:var(--c-error-fg);background:var(--c-retro-bg);border:1px solid var(--c-retro-border);border-radius:4px;padding:0 .3rem;letter-spacing:.04em;margin-top:.15rem;line-height:1.5}.row.is-retro .p-name{color:var(--c-error-fg)}.row.is-retro .p-sym{opacity:.88}
+.app-footer{border-top:.5px solid var(--c-edge);padding:.75rem 1.1rem 1rem;text-align:center;font-size:.56rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.05em;line-height:1.8}
+.bar-support{position:absolute;top:-34px;right:1.1rem;width:30px;height:30px;border-radius:50%;background:var(--c-bar);display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:#fff;text-decoration:none;box-shadow:0 -1px 4px rgba(0,0,0,.15)}.bar-support:active{opacity:.7}
+.retro-r{font-size:.5em;vertical-align:super;margin-left:.12em;color:var(--c-mute);font-weight:700;line-height:0}.row.is-retro .p-name{color:var(--c-ink)}.row.is-retro .p-sym{opacity:.88}
+.tabla-wrap{padding:.4rem .9rem 1rem;font-family:var(--mono)}
+.trow{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr .9fr .8fr .4fr;gap:.25rem;align-items:center;padding:.5rem 0;border-bottom:.5px solid var(--c-edge);font-size:.58rem}
+.tabla-note{font-size:.55rem;color:var(--c-mute);line-height:1.5;padding:.6rem 0 0;font-style:italic}
+.admin-panel{background:var(--c-bg-outer);min-height:100vh;padding:2rem 1rem 6rem}
+.admin-inner{max-width:560px;margin:0 auto}
+.admin-title{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--c-ink);margin-bottom:.3rem}
+.admin-sub{font-family:var(--mono);font-size:.6rem;color:var(--c-mute);line-height:1.6;margin-bottom:1rem}
+.admin-date-input{width:100%;padding:.7rem;border-radius:10px;border:1px solid var(--c-edge);background:var(--c-card);color:var(--c-ink);font-family:var(--mono);font-size:.85rem;margin-bottom:.7rem}
+.admin-run-btn{width:100%;padding:.8rem;border-radius:10px;border:none;background:var(--c-border);color:var(--c-card);font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;cursor:pointer;margin-bottom:1.2rem}
+.admin-run-btn:disabled{opacity:.5}
+.admin-body{padding:.9rem 0;border-bottom:.5px solid var(--c-edge)}
+.admin-body-head{font-family:var(--mono);font-size:.7rem;color:var(--c-ink);margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
+.admin-chain{font-size:1.1rem;letter-spacing:.02em;line-height:1.7;word-break:break-all}
+.admin-chain .arrow{color:var(--c-mute);font-size:.7rem;margin:0 .1rem}
+.admin-breakdown{font-family:var(--mono);font-size:.58rem;color:var(--c-mute);margin-top:.4rem;line-height:1.8}
+.trow.thead{color:var(--c-mute);font-size:.55rem;letter-spacing:.05em;border-bottom:1px solid var(--c-edge)}
+.tc{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--c-ink)}
+.tc.t-body{font-weight:700}.tc.t-num{color:var(--c-mute)}.tc.t-retro{text-align:center;color:var(--c-mute)}
+.tc.el-fuego{color:#C73A4A;font-weight:700}.tc.el-tierra{color:#6D7C50;font-weight:700}.tc.el-aire{color:#B78627;font-weight:700}.tc.el-agua{color:#248692;font-weight:700}.tc.el-ninguno{color:#7D5AA1;font-weight:700}
+.tabla-copy{width:100%;margin-top:.9rem;padding:.7rem;border-radius:10px;background:var(--c-edge);color:var(--c-ink);font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;cursor:pointer;border:none}
 .btn-share{background:var(--c-surface-alt);color:var(--c-ink);border:1.5px solid var(--c-edge);border-radius:10px;padding:.6rem .8rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.06em;cursor:pointer;line-height:1.3;text-align:center;transition:all .2s;min-width:48px;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;white-space:nowrap}.btn-share:hover{background:var(--c-border);color:var(--c-card);border-color:var(--c-border)}[data-theme=dark] .btn-share:hover{color:#111}.btn-share .btn-icon{font-size:1.05rem;display:block}.btn-share.loading{opacity:.5;pointer-events:none}
 .toast{position:fixed;bottom:calc(var(--c-bot-h) + env(safe-area-inset-bottom,0px) + .75rem);left:50%;transform:translateX(-50%) translateY(20px);background:var(--c-toast-bg);color:var(--c-toast-fg);font-family:var(--mono);font-size:.65rem;letter-spacing:.07em;padding:.65rem 1.25rem;border-radius:20px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:500;white-space:nowrap}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}body.modal-open{overflow:hidden}
 button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outline-offset:2px}button:active:not(:disabled){transform:scale(.98)}
 .approx-banner{margin:.55rem 1.1rem 0;padding:.6rem .85rem;background:var(--c-approx-bg);border:1px solid var(--c-approx-border);border-radius:10px;font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--c-approx-fg);line-height:1.55;text-align:center}
 .error-panel{margin:1.5rem 1.1rem;padding:1.1rem;border:1px solid var(--c-error-border);border-radius:12px;background:var(--c-error-bg);text-align:center}.error-panel .error-title{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(--c-error-fg);margin-bottom:.5rem}.error-panel .error-msg{font-size:.74rem;color:var(--c-mute);margin-bottom:.75rem;line-height:1.5}.btn-retry{background:var(--c-border);color:var(--c-card);border:none;border-radius:8px;padding:.55rem 1rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;cursor:pointer;min-height:44px}[data-theme=dark] .btn-retry{color:#111}.field-error{font-size:.58rem;color:var(--c-error-fg);font-family:var(--mono);letter-spacing:.04em;margin-top:.25rem}
-.top-actions{display:flex;gap:.45rem;align-items:center;flex-shrink:0}.btn-icon-only{background:var(--c-surface-alt);border:1px solid var(--c-edge);border-radius:10px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.15rem;font-family:var(--mono);color:var(--c-ink);transition:background .15s,border-color .15s}.btn-icon-only:hover{background:var(--c-edge)}.btn-icon-only:disabled{opacity:.4;cursor:not-allowed}.btn-theme{font-size:1rem;letter-spacing:0}.app-footer details{cursor:pointer}.app-footer summary{list-style:none;color:var(--c-mute)}.app-footer summary::-webkit-details-marker{display:none}.app-footer details[open] summary{margin-bottom:.35rem}
+.top-actions{display:flex;gap:.45rem;align-items:center;flex-shrink:0}.btn-icon-only{background:var(--c-surface-alt);border:1px solid var(--c-edge);border-radius:10px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.15rem;font-family:var(--mono);color:var(--c-ink);transition:background .15s,border-color .15s}.btn-icon-only:hover{background:var(--c-edge)}.btn-icon-only:disabled{opacity:.4;cursor:not-allowed}.app-footer details{cursor:pointer}.app-footer summary{list-style:none;color:var(--c-mute)}.app-footer summary::-webkit-details-marker{display:none}.app-footer details[open] summary{margin-bottom:.35rem}
 @media (prefers-reduced-motion:reduce){.bar-dot{animation:none}.toast,button,.btn-date,.btn-share,.prog{transition:none}}
+[data-body],[data-const]{cursor:pointer;transition:opacity .15s;outline:none;background:transparent;-webkit-appearance:none;appearance:none}[data-body]:active,[data-const]:active{opacity:.55}
+[data-body]:focus-visible,[data-const]:focus-visible{outline:1px solid currentColor;outline-offset:2px;border-radius:4px}
+.bib-box{max-height:82vh;display:flex;flex-direction:column}
+.bib-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.15rem}.bib-sym{font-size:1.7rem;line-height:1;color:var(--c-ink)}.bib-name{margin-bottom:0}
+.bib-scroll{overflow-y:auto;margin:.75rem 0 1.1rem;padding-right:.2rem}
+.bib-domain{font-size:.82rem;line-height:1.6;color:var(--c-ink);margin-bottom:.7rem}
+.bib-origin{font-size:.72rem;line-height:1.6;color:var(--c-mute);margin-bottom:.7rem;font-family:var(--mono)}.bib-origin b{color:var(--c-ink);font-weight:700}
+.bib-consensus{font-size:.62rem;font-family:var(--mono);letter-spacing:.03em;line-height:1.6;color:var(--c-approx-fg);background:var(--c-approx-bg);border:1px solid var(--c-approx-border);border-radius:8px;padding:.55rem .7rem;margin-bottom:1rem}
+.bib-section-label{font-size:.6rem;letter-spacing:.14em;color:var(--c-mute);font-family:var(--mono);text-transform:uppercase;margin:0 0 .5rem;border-top:.5px solid var(--c-edge);padding-top:.85rem}
+.bib-voice{padding-bottom:.75rem;margin-bottom:.75rem;border-bottom:.5px solid var(--c-edge)}.bib-voice:last-child{border-bottom:none;margin-bottom:0}
+.bib-voice-head{font-size:.62rem;font-family:var(--mono);letter-spacing:.04em;color:var(--c-mute);margin-bottom:.3rem}.bib-voice-head b{color:var(--c-ink)}
+.bib-voice-text{font-size:.78rem;line-height:1.55;color:var(--c-ink);margin-bottom:.3rem}
+.bib-voice-src{font-size:.6rem;line-height:1.5;color:var(--c-mute);font-style:italic}
+.bib-contra{font-size:.75rem;line-height:1.55;color:var(--c-ink);margin-bottom:.55rem;padding-left:.9rem;position:relative}.bib-contra:before{content:"—";position:absolute;left:0;color:var(--c-mute)}
+.bib-empty{font-size:.7rem;color:var(--c-mute);font-family:var(--mono);text-align:center;padding:1.5rem 0}
   </style>
 </head>
 <body>
   <header class="sticky-top">
     <div class="top-inner">
       <div class="top-left">
-        <p class="top-label">POSICIONES REALES · IAU · GEOCÉNTRICO</p>
-        <h1 class="top-name">TRUE SPACES</h1>
+        <h1 class="top-name">ASTRANSYS</h1>
+        <p class="top-label">TRUE ASTRO POSITION</p>
         <p class="top-context" aria-live="polite">◎ tiempo real · ahora</p>
       </div>
       <div class="top-actions">
-        <button type="button" class="btn-icon-only btn-theme" aria-label="Activar modo oscuro" title="Activar modo oscuro"><span class="sym" aria-hidden>●</span></button>
-        <button type="button" class="btn-mode live-active" aria-label="Actualizar posiciones en tiempo real" title="Actualizar ahora"><span class="btn-icon sym" aria-hidden>◎</span>LIVE</button>
-        <button type="button" class="btn-date" aria-label="Elegir fecha y hora" aria-expanded="false"><span class="btn-icon sym" aria-hidden>◷</span>FECHA</button>
-        <button type="button" class="btn-share" aria-label="Guardar imagen de las posiciones" aria-busy="false"><span class="btn-icon sym" aria-hidden>↓</span>IMG</button>
+        <button type="button" class="btn-icon-only btn-settings" aria-label="Configuración" aria-expanded="false" aria-haspopup="true"><span class="sym" aria-hidden>⚙</span></button>
       </div>
+    </div>
+    <div class="settings-menu" id="settings-menu" hidden>
+      <button type="button" class="settings-item" id="menu-theme"><span class="sym" aria-hidden>●</span><span class="settings-label">Modo oscuro</span></button>
+      <button type="button" class="settings-item" id="menu-tabla" aria-pressed="false"><span class="sym" aria-hidden>▤</span><span class="settings-label">Ver como tabla</span></button>
+      <button type="button" class="settings-item" id="menu-export"><span class="sym" aria-hidden>↓</span><span class="settings-label">Exportar</span></button>
     </div>
   </header>
 
@@ -85,14 +138,25 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     </footer>
   </main>
 
+  <section id="admin-panel" class="admin-panel" hidden aria-label="Historial de tránsitos (admin)">
+    <div class="admin-inner">
+      <p class="admin-title">HISTORIAL DE TRÁNSITOS — ADMIN</p>
+      <p class="admin-sub">Fecha de partida → hoy. Un cálculo diario por cuerpo; puede tardar varios segundos.</p>
+      <input type="date" id="admin-start-date" class="admin-date-input">
+      <button type="button" id="admin-run" class="admin-run-btn">CALCULAR HISTORIAL</button>
+      <div id="admin-results" class="admin-results"></div>
+    </div>
+  </section>
+
   <footer class="sticky-bar" aria-label="Reloj local">
+    <a class="bar-support" href="https://link.mercadopago.cl/psicoandino" target="_blank" rel="noopener" aria-label="Colaborar con Astransys" title="Colaborar con Astransys">♡</a>
     <div class="bar-inner">
-      <div class="bar-earth"><span class="bar-dot" aria-hidden></span><span class="sym" aria-hidden>⊕</span> EARTH</div>
+      <button type="button" class="bar-earth" id="bar-live-btn" aria-label="Volver a tiempo real" title="Volver a tiempo real" aria-pressed="true"><span class="bar-dot" aria-hidden></span><span class="sym" aria-hidden>⊕</span> EARTH</button>
       <time class="bar-time" datetime="">00:00:00</time>
-      <div>
+      <button type="button" class="bar-date-block" id="bar-date-btn" aria-label="Elegir fecha y hora" aria-expanded="false">
         <div class="bar-date">— — —</div>
         <div class="bar-tz">UTC —</div>
-      </div>
+      </button>
     </div>
   </footer>
 
@@ -117,17 +181,30 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     </div>
   </div>
 
+  <div class="modal-overlay" id="bib-modal" role="presentation" aria-hidden="true">
+    <div class="modal-box bib-box" role="dialog" aria-modal="true" aria-labelledby="bib-title">
+      <div class="bib-head">
+        <span class="bib-sym" id="bib-sym" aria-hidden></span>
+        <h2 id="bib-title" class="modal-title bib-name"></h2>
+      </div>
+      <div class="bib-scroll" id="bib-content"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" id="bib-close-btn">CERRAR</button>
+      </div>
+    </div>
+  </div>
+
   <script>
 (() => {
   const UI = {refresh:"↻",live:"◎",date:"◷",download:"↓",loading:"…",earth:"⊕",retro:"℞",arrow:"→",themeLight:"○",themeDark:"●",ok:"+",fail:"×"};
   const IAU = [
-    {name:"Aries",short:"Aries",sym:"♈️",start:29,end:53.5},{name:"Taurus",short:"Taurus",sym:"♉️",start:53.5,end:90.2},
-    {name:"Gemini",short:"Gemini",sym:"♊️",start:90.2,end:118.1},{name:"Cancer",short:"Cancer",sym:"♋️",start:118.1,end:138.2},
-    {name:"Leo",short:"Leo",sym:"♌️",start:138.2,end:173.9},{name:"Virgo",short:"Virgo",sym:"♍️",start:173.9,end:218},
-    {name:"Libra",short:"Libra",sym:"♎️",start:218,end:241},{name:"Scorpius",short:"Scorpius",sym:"♏️",start:241,end:247.7},
-    {name:"Ophiuchus",short:"Ophiuch.",sym:"⛎",start:247.7,end:266.3},{name:"Sagittarius",short:"Sagitt.",sym:"♐️",start:266.3,end:299.7},
-    {name:"Capricornus",short:"Capric.",sym:"♑️",start:299.7,end:327.6},{name:"Aquarius",short:"Aquarius",sym:"♒️",start:327.6,end:348.7},
-    {name:"Pisces",short:"Pisces",sym:"♓️",start:348.7,end:389}
+    {name:"Aries",short:"Aries",sym:"♈︎",start:29,end:53.5,el:"fuego"},{name:"Taurus",short:"Taurus",sym:"♉︎",start:53.5,end:90.2,el:"tierra"},
+    {name:"Gemini",short:"Gemini",sym:"♊︎",start:90.2,end:118.1,el:"aire"},{name:"Cancer",short:"Cancer",sym:"♋︎",start:118.1,end:138.2,el:"agua"},
+    {name:"Leo",short:"Leo",sym:"♌︎",start:138.2,end:173.9,el:"fuego"},{name:"Virgo",short:"Virgo",sym:"♍︎",start:173.9,end:218,el:"tierra"},
+    {name:"Libra",short:"Libra",sym:"♎︎",start:218,end:241,el:"aire"},{name:"Scorpius",short:"Scorpius",sym:"♏︎",start:241,end:247.7,el:"agua"},
+    {name:"Ophiuchus",short:"Ophiuch.",sym:"⛎︎",start:247.7,end:266.3,el:"ninguno"},{name:"Sagittarius",short:"Sagitt.",sym:"♐︎",start:266.3,end:299.7,el:"fuego"},
+    {name:"Capricornus",short:"Capric.",sym:"♑︎",start:299.7,end:327.6,el:"tierra"},{name:"Aquarius",short:"Aquarius",sym:"♒︎",start:327.6,end:348.7,el:"aire"},
+    {name:"Pisces",short:"Pisces",sym:"♓︎",start:348.7,end:389,el:"agua"}
   ];
   const PLANETS = [
     {key:"Pluto",name:"Pluto",sym:"♇",cat:"transpersonal"},{key:"Neptune",name:"Neptune",sym:"♆",cat:"transpersonal"},
@@ -137,17 +214,18 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     {key:"Sun",name:"Sun",sym:"☉",cat:"personal"},{key:"Moon",name:"Moon",sym:"☽",cat:"personal"}
   ];
   const FAST_BODIES = new Set(["Moon","Mercury","Venus"]);
-  const CAT_META = {transpersonal:{label:"TRANSPERSONAL",color:"#7F77DD"},social:{label:"SOCIAL",color:"#BA7517"},personal:{label:"PERSONAL",color:"#1D9E75"}};
 
   const $ = s => document.querySelector(s);
   const el = {
     html: document.documentElement, body: document.body, top:$(".sticky-top"), bot:$(".sticky-bar"), card:$(".card"), diorama:$("#diorama"),
-    context:$(".top-context"), toast:$(".toast"), theme:$(".btn-theme"), live:$(".btn-mode"), date:$(".btn-date"), share:$(".btn-share"),
+    context:$(".top-context"), toast:$(".toast"), theme:$("#menu-theme"), live:$("#bar-live-btn"), date:$("#bar-date-btn"), share:$("#menu-export"), tabla:$("#menu-tabla"),
+    settingsBtn:$(".btn-settings"), settingsMenu:$("#settings-menu"),
     modal:$(".modal-overlay"), inputDate:$("#input-date"), inputTime:$("#input-time"), dateError:$("#date-error"),
-    cancel:$(".btn-cancel"), go:$(".btn-go"), barTime:$(".bar-time"), barDate:$(".bar-date"), barTz:$(".bar-tz")
+    cancel:$(".btn-cancel"), go:$(".btn-go"), barTime:$(".bar-time"), barDate:$(".bar-date"), barTz:$(".bar-tz"),
+    bibModal:$("#bib-modal"), bibSym:$("#bib-sym"), bibTitle:$("#bib-title"), bibContent:$("#bib-content"), bibClose:$("#bib-close-btn")
   };
 
-  let mounted = false, mode = "live", targetDate = null, isApproximate = false, positions = null, error = null, theme = "light", shareLoading = false;
+  let mounted = false, mode = "live", targetDate = null, isApproximate = false, positions = null, error = null, theme = "light", shareLoading = false, tableMode = false;
   let toastTimer = null;
 
   const pad = n => String(n).padStart(2, "0");
@@ -168,6 +246,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     el.theme.setAttribute("aria-label", next === "light" ? "Activar modo oscuro" : "Activar modo claro");
     el.theme.title = next === "light" ? "Activar modo oscuro" : "Activar modo claro";
     el.theme.querySelector(".sym").textContent = next === "light" ? UI.themeDark : UI.themeLight;
+    el.theme.querySelector(".settings-label").textContent = next === "light" ? "Modo oscuro" : "Modo claro";
   }
   function getConstellation(lon) {
     if (lon >= 348.7 || lon < 29) return IAU[12];
@@ -210,7 +289,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
         const lon = getLongitude(p.key, date);
         const c = getConstellation(lon);
         const localDeg = c.name === "Pisces" ? (lon >= 348.7 ? lon - 348.7 : lon + 11.3) : lon - c.start;
-        return {...p,constellation:c,nextConst:getNextConstellation(c),degree:localDeg.toFixed(1),pct:getProgress(lon,c),retro:isRetrograde(p.key,date)};
+        return {...p,constellation:c,nextConst:getNextConstellation(c),degree:localDeg.toFixed(1),degreeExact:localDeg,pct:getProgress(lon,c),retro:isRetrograde(p.key,date)};
       } catch (err) {
         const c = getConstellation(0);
         return {...p,constellation:c,nextConst:getNextConstellation(c),degree:"0",pct:0,retro:false,error:err instanceof Error ? err.message : String(err)};
@@ -220,14 +299,137 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
   function arcSVG() {
     return '<svg class="arc" viewBox="0 0 380 11" aria-hidden><path d="M0,10 Q190,1 380,10" stroke-width="0.7" fill="none"></path></svg>';
   }
-  function planetRow(p, meta, ac, approx, showArc) {
+  function planetRow(p, ac, approx, showArc) {
     const degreeLabel = approx ? `~${p.degree}°` : `${p.degree}°`;
     const aria = `${p.name}, ${p.constellation.name} ${degreeLabel}${p.retro ? ", retrógrado" : ""}, próximo signo ${p.nextConst.name}`;
     return `<div class="row${p.retro ? " is-retro" : ""}" aria-label="${esc(aria)}">
-      <div class="sign${ac}"><span class="s-sym" aria-hidden>${p.constellation.sym}</span><span class="s-name">${esc(p.constellation.short)}</span></div>
-      <div class="planet"><span class="p-sym cat-${p.cat}" aria-hidden>${p.sym}</span><span class="p-name">${esc(p.name)}</span>${p.retro ? `<span class="retro-badge">${UI.retro} retrógrado</span>` : ""}<span class="p-deg">${degreeLabel}</span><div class="prog-wrap" role="presentation"><div class="prog" style="width:${p.pct.toFixed(0)}%;background:${meta.color}"></div></div></div>
-      <div class="sign r${ac}"><span class="s-sym" aria-hidden>${p.nextConst.sym}</span><span class="s-name">${esc(p.nextConst.short)}</span></div>
+      <div class="sign${ac}" data-const="${esc(p.constellation.name)}" role="button" tabindex="0" aria-label="Ver ficha de ${esc(p.constellation.name)}"><span class="s-sym el-${p.constellation.el}" aria-hidden>${p.constellation.sym}</span><span class="s-name">${esc(p.constellation.short)}</span></div>
+      <div class="planet" data-body="${esc(p.key)}" role="button" tabindex="0" aria-label="Ver ficha de ${esc(p.name)}"><span class="p-sym" aria-hidden>${p.sym}</span><span class="p-name">${esc(p.name)}${p.retro ? `<sup class="retro-r" title="Retrógrado">R</sup>` : ""}</span><span class="p-deg">${degreeLabel}</span><div class="prog-wrap" role="presentation"><div class="prog" style="width:${p.pct.toFixed(0)}%;background:var(--c-bar)"></div></div></div>
+      <div class="sign r${ac}" data-const="${esc(p.nextConst.name)}" role="button" tabindex="0" aria-label="Ver ficha de ${esc(p.nextConst.name)}"><span class="s-sym el-${p.nextConst.el}" aria-hidden>${p.nextConst.sym}</span><span class="s-name">${esc(p.nextConst.short)}</span></div>
     </div>${showArc ? arcSVG() : ""}`;
+  }
+  function voiceHTML(v) {
+    const src = v.fuente && !/^sin cita/i.test(v.fuente) ? `<p class="bib-voice-src">${esc(v.fuente)}${v.tipo_fuente ? ` · ${esc(v.tipo_fuente)}` : ""}</p>` : "";
+    return `<div class="bib-voice">
+      <p class="bib-voice-head"><b>${esc(v.tradicion)}</b> · ${esc(v.periodo)}</p>
+      <p class="bib-voice-text">${esc(v.planteamiento)}</p>
+      ${src}
+    </div>`;
+  }
+  function fichaBodyHTML(entry) {
+    if (!entry) return `<p class="bib-empty">Todavía sin biblioteca para este cuerpo.</p>`;
+    let html = "";
+    if (entry.origen) {
+      html += `<p class="bib-origin"><b>Origen:</b> ${esc(entry.origen.nombres_antiguos)}<br>${esc(entry.origen.figura)}</p>`;
+    }
+    html += `<p class="bib-domain">${esc(entry.dominio.descripcion)}</p>`;
+    if (entry.dominio.consenso_independiente) {
+      const c = entry.dominio.consenso_independiente;
+      html += `<p class="bib-consensus">${c.existe ? "◈ Convergencia independiente: " : "○ Sin convergencia independiente: "}${esc(c.detalle)}</p>`;
+    }
+    if (entry.voces_historicas && entry.voces_historicas.length) {
+      html += `<p class="bib-section-label">Voces históricas</p>` + entry.voces_historicas.map(voiceHTML).join("");
+    }
+    if (entry.contradicciones && entry.contradicciones.length) {
+      html += `<p class="bib-section-label">Contradicciones identificadas</p>` + entry.contradicciones.map(c => `<p class="bib-contra">${esc(c)}</p>`).join("");
+    }
+    return html;
+  }
+  function openBibModal(sym, name, entry) {
+    el.bibSym.textContent = sym;
+    el.bibTitle.textContent = name;
+    el.bibContent.innerHTML = fichaBodyHTML(entry);
+    el.bibModal.classList.add("open");
+    el.bibModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+  function closeBibModal() {
+    el.bibModal.classList.remove("open");
+    el.bibModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+  function handleDioramaClick(e) {
+    const bodyEl = e.target.closest("[data-body]");
+    if (bodyEl) {
+      const key = bodyEl.getAttribute("data-body");
+      const p = PLANETS.find(x => x.key === key);
+      const entry = typeof BIBLIOTECA_CUERPOS !== "undefined" ? BIBLIOTECA_CUERPOS[key] : null;
+      openBibModal(p ? p.sym : "", p ? p.name : key, entry);
+      return;
+    }
+    const constEl = e.target.closest("[data-const]");
+    if (constEl) {
+      const name = constEl.getAttribute("data-const");
+      const c = IAU.find(x => x.name === name);
+      const entry = typeof BIBLIOTECA_CONSTELACIONES !== "undefined" ? BIBLIOTECA_CONSTELACIONES[name] : null;
+      openBibModal(c ? c.sym : "", entry ? entry.nombre : name, entry);
+    }
+  }
+  const AVG_SPEED = {Sun:0.9856,Moon:13.176,Mercury:0.9856,Venus:0.9856,Mars:0.524,Jupiter:0.0831,Saturn:0.0335,Uranus:0.0117,Neptune:0.006,Pluto:0.004};
+  function estimateDays(p, restantesGrados) {
+    if (p.retro) return null;
+    const speed = AVG_SPEED[p.key];
+    if (!speed) return null;
+    return restantesGrados / speed;
+  }
+  function formatDays(days) {
+    if (days === null) return "℞";
+    if (days < 1) return "<1 día";
+    if (days < 400) return `~${Math.round(days)} d`;
+    return `~${(days / 365.25).toFixed(1)} a`;
+  }
+  function renderTabla(visible) {
+    const rows = visible.map(p => {
+      const width = p.constellation.end - p.constellation.start;
+      const restantes = width - p.degreeExact;
+      const dias = estimateDays(p, restantes);
+      return `<div class="trow">
+        <span class="tc t-body">${esc(p.name)}</span>
+        <span class="tc el-${p.constellation.el}">${esc(p.constellation.short)}</span>
+        <span class="tc t-num">${p.degreeExact.toFixed(3)}°</span>
+        <span class="tc el-${p.nextConst.el}">${esc(p.nextConst.short)}</span>
+        <span class="tc t-num">${restantes.toFixed(3)}°</span>
+        <span class="tc t-num">${formatDays(dias)}</span>
+        <span class="tc t-retro">${p.retro ? "℞" : "—"}</span>
+      </div>`;
+    }).join("");
+    return `<div class="tabla-wrap">
+      <div class="trow thead" aria-hidden>
+        <span class="tc">CUERPO</span><span class="tc">ACTUAL</span><span class="tc">GRADOS</span><span class="tc">PRÓX.</span><span class="tc">RESTAN</span><span class="tc">DÍAS~</span><span class="tc">℞</span>
+      </div>
+      ${rows}
+      <p class="tabla-note">DÍAS~ es estimado por velocidad media, no exacto — Mercurio y Venus varían más de lo que este promedio refleja. En retrógrado no se estima (dirección invertida).</p>
+      <button type="button" class="tabla-copy">▤ COPIAR (formato tabulado)</button>
+    </div>`;
+  }
+  function copyTablaData(visible) {
+    const header = ["CUERPO","ACTUAL","GRADOS","PRÓXIMA","RESTANTES","DIAS_APROX","RETRO"].join("\t");
+    const lines = visible.map(p => {
+      const width = p.constellation.end - p.constellation.start;
+      const restantes = width - p.degreeExact;
+      const dias = estimateDays(p, restantes);
+      return [p.name, p.constellation.short, p.degreeExact.toFixed(3), p.nextConst.short, restantes.toFixed(3), dias === null ? "retrogrado" : Math.round(dias), p.retro ? "R" : ""].join("\t");
+    });
+    const text = [header, ...lines].join("\n");
+    const btn = el.diorama.querySelector(".tabla-copy");
+    navigator.clipboard.writeText(text).then(() => {
+      if (btn) { const orig = btn.textContent; btn.textContent = "✓ COPIADO"; setTimeout(() => { btn.textContent = orig; }, 1600); }
+    }).catch(() => setToast("No se pudo copiar — copialo manualmente"));
+  }
+  function toggleSettingsMenu() {
+    const open = el.settingsMenu.classList.toggle("open");
+    el.settingsMenu.hidden = !open;
+    el.settingsBtn.setAttribute("aria-expanded", String(open));
+  }
+  function closeSettingsMenu() {
+    el.settingsMenu.classList.remove("open");
+    el.settingsMenu.hidden = true;
+    el.settingsBtn.setAttribute("aria-expanded", "false");
+  }
+  function syncTopHeight() {
+    if (!el.top) return;
+    const h = el.top.offsetHeight;
+    if (h > 0) document.documentElement.style.setProperty("--c-top-h", `${h}px`);
   }
   function setToast(msg, duration = 2800) {
     clearTimeout(toastTimer);
@@ -246,11 +448,13 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     el.live.disabled = !mounted || shareLoading;
     el.date.disabled = !mounted;
     el.share.disabled = shareLoading || !positions || !mounted;
-    el.live.className = `btn-mode${mode === "live" ? " live-active" : ""}${el.live.classList.contains("spin") ? " spin" : ""}`;
-    el.date.className = `btn-date${mode === "custom" ? " date-active" : ""}`;
-    el.share.className = `btn-share${shareLoading ? " loading" : ""}`;
+    el.live.setAttribute("aria-pressed", String(mode === "live"));
+    el.date.className = `bar-date-block${mode === "custom" ? " date-active" : ""}`;
+    el.share.className = `settings-item${shareLoading ? " loading" : ""}`;
     el.share.setAttribute("aria-busy", String(shareLoading));
-    el.share.querySelector(".btn-icon").textContent = shareLoading ? UI.loading : UI.download;
+    el.share.querySelector(".sym").textContent = shareLoading ? UI.loading : UI.download;
+    el.tabla.setAttribute("aria-pressed", String(tableMode));
+    el.tabla.setAttribute("aria-pressed", String(tableMode));
     if (error) {
       el.diorama.innerHTML = `<div class="error-panel" role="alert"><p class="error-title">NO SE PUDO CALCULAR</p><p class="error-msg">${esc(error)}</p><button type="button" class="btn-retry">REINTENTAR</button></div>`;
       $(".btn-retry").addEventListener("click", refresh);
@@ -260,17 +464,17 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
       el.diorama.innerHTML = `<p class="msg"><span class="sym">${UI.refresh}</span> calculando posiciones…</p>`;
       return;
     }
-    let html = isApproximate ? '<p class="approx-banner" role="note">Sin hora: Luna, Mercurio y Venus = posición aproximada (mediodía UTC).</p>' : "";
-    let lastCat = null;
     const visible = positions.filter(p => !p.error);
+    if (tableMode) {
+      el.diorama.innerHTML = renderTabla(visible);
+      const copyBtn = el.diorama.querySelector(".tabla-copy");
+      if (copyBtn) copyBtn.addEventListener("click", () => copyTablaData(visible));
+      return;
+    }
+    let html = isApproximate ? '<p class="approx-banner" role="note">Sin hora: Luna, Mercurio y Venus = posición aproximada (mediodía UTC).</p>' : "";
     visible.forEach((p, i) => {
-      const meta = CAT_META[p.cat];
       const approx = isApproximate && FAST_BODIES.has(p.name);
-      if (p.cat !== lastCat) {
-        html += `<div class="cat" aria-hidden><span class="cat-dot" style="background:${meta.color}"></span>${meta.label}</div>`;
-        lastCat = p.cat;
-      }
-      html += planetRow(p, meta, approx ? " approx" : "", approx, i < visible.length - 1);
+      html += planetRow(p, approx ? " approx" : "", approx, i < visible.length - 1);
     });
     el.diorama.innerHTML = html;
   }
@@ -406,10 +610,89 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     }
   }
 
-  el.theme.addEventListener("click", () => applyTheme(theme === "light" ? "dark" : "light"));
+  function computeTransitHistory(startDate, endDate) {
+    const results = {};
+    const state = {};
+    PLANETS.forEach(p => { results[p.key] = []; state[p.key] = null; });
+    const oneDay = 86400000;
+    for (let t = startDate.getTime(); t <= endDate.getTime(); t += oneDay) {
+      const d = new Date(t);
+      const positions = calcPositions(d);
+      positions.forEach(p => {
+        if (p.error) return;
+        const s = state[p.key];
+        if (!s) {
+          state[p.key] = { c: p.constellation, start: t };
+        } else if (s.c.name !== p.constellation.name) {
+          results[p.key].push({ c: s.c, days: Math.round((t - s.start) / oneDay) });
+          state[p.key] = { c: p.constellation, start: t };
+        }
+      });
+    }
+    PLANETS.forEach(p => {
+      const s = state[p.key];
+      if (s) results[p.key].push({ c: s.c, days: Math.round((endDate.getTime() - s.start) / oneDay) + 1 });
+    });
+    return results;
+  }
+  function renderTransitHistory(results) {
+    return PLANETS.map(p => {
+      const segs = results[p.key];
+      if (!segs || !segs.length) return "";
+      const chain = segs.map(s => `<span class="el-${s.c.el}">${s.c.sym}</span>`).join('<span class="arrow">→</span>');
+      const breakdown = segs.map(s => `${s.c.short} ${s.days}d`).join(" · ");
+      return `<div class="admin-body">
+        <div class="admin-body-head"><span aria-hidden>${p.sym}</span> ${esc(p.name)}</div>
+        <div class="admin-chain">${chain}</div>
+        <div class="admin-breakdown">${esc(breakdown)}</div>
+      </div>`;
+    }).join("");
+  }
+  function checkAdminAccess() {
+    const panel = document.getElementById("admin-panel");
+    if (!panel) return;
+    // Acceso solo por hash en la URL, sin autenticación real — cambiar "astransys-admin"
+    // por otra palabra si se quiere, es client-side puro, no es seguridad real.
+    if (location.hash === "#astransys-admin") {
+      panel.hidden = false;
+      el.card.hidden = true;
+      el.bot.hidden = true;
+      el.top.hidden = true;
+    }
+  }
+  function setupAdminPanel() {
+    const runBtn = document.getElementById("admin-run");
+    const dateInput = document.getElementById("admin-start-date");
+    const results = document.getElementById("admin-results");
+    if (!runBtn) return;
+    runBtn.addEventListener("click", () => {
+      if (!dateInput.value) return;
+      const start = new Date(dateInput.value + "T00:00:00Z");
+      const end = new Date();
+      if (start > end) return;
+      runBtn.disabled = true;
+      runBtn.textContent = "CALCULANDO…";
+      setTimeout(() => {
+        const history = computeTransitHistory(start, end);
+        results.innerHTML = renderTransitHistory(history);
+        runBtn.disabled = false;
+        runBtn.textContent = "CALCULAR HISTORIAL";
+      }, 30);
+    });
+  }
+
+  el.theme.addEventListener("click", () => { applyTheme(theme === "light" ? "dark" : "light"); closeSettingsMenu(); });
   el.live.addEventListener("click", handleLive);
   el.date.addEventListener("click", openModal);
-  el.share.addEventListener("click", captureAndShare);
+  el.share.addEventListener("click", () => { captureAndShare(); closeSettingsMenu(); });
+  el.tabla.addEventListener("click", () => { tableMode = !tableMode; render(); closeSettingsMenu(); });
+  el.settingsBtn.addEventListener("click", toggleSettingsMenu);
+  document.addEventListener("click", e => {
+    if (!el.settingsMenu.classList.contains("open")) return;
+    if (e.target === el.settingsBtn || el.settingsBtn.contains(e.target)) return;
+    if (el.settingsMenu.contains(e.target)) return;
+    closeSettingsMenu();
+  });
   el.cancel.addEventListener("click", closeModal);
   el.go.addEventListener("click", applyDate);
   el.inputDate.addEventListener("input", () => {
@@ -417,14 +700,25 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     el.inputDate.setAttribute("aria-invalid", "false");
   });
   el.modal.addEventListener("click", e => { if (e.target === el.modal) closeModal(); });
-  window.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+  el.diorama.addEventListener("click", handleDioramaClick);
+  el.bibClose.addEventListener("click", closeBibModal);
+  el.bibModal.addEventListener("click", e => { if (e.target === el.bibModal) closeBibModal(); });
+  window.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    if (el.bibModal.classList.contains("open")) { closeBibModal(); return; }
+    closeModal();
+  });
 
   applyTheme(getStoredTheme());
   mounted = true;
+  syncTopHeight();
+  window.addEventListener("resize", syncTopHeight);
   tickClock();
   refresh();
   setInterval(tickClock, 1000);
   setInterval(() => { if (mode === "live") refresh(); }, 300000);
+  checkAdminAccess();
+  setupAdminPanel();
 })();
   </script>
 </body>
