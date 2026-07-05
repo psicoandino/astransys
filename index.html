@@ -9,8 +9,8 @@
   <script src="biblioteca.js"></script>
   <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root,[data-theme=light]{color-scheme:light;font-size:clamp(15px,3.8vw,18px);--mono:"Courier New",monospace;--serif:Georgia,serif;--c-bg:#f5f3ec;--c-bg-outer:#ebe9e1;--c-card:#fff;--c-ink:#1a1a1a;--c-mute:#888;--c-edge:#e8e4dc;--c-border:#111;--c-surface:#fafaf8;--c-surface-alt:#f5f3ec;--c-arc:#e8e4dc;--c-bar:#0d0d0d;--c-bar-muted:#666;--c-bar-faint:#444;--c-overlay:rgba(0,0,0,.65);--c-modal:#fff;--c-input-bg:#fafaf8;--c-input-border:#ddd;--c-focus:#111;--c-toast-bg:#111;--c-toast-fg:#fff;--c-approx-bg:#faf6e8;--c-approx-border:#e8d9a8;--c-approx-fg:#8a7340;--c-error-bg:#fff8f7;--c-error-border:#f5c6c2;--c-error-fg:#c0392b;--c-shadow:rgba(0,0,0,.1);--c-top-h:76px;--c-bot-h:66px;--live:#1d9e75;--custom:#3d5a8a;}
-[data-theme=dark]{color-scheme:dark;--c-bg:#0f0f10;--c-bg-outer:#080809;--c-card:#1a1a1c;--c-ink:#f0ede6;--c-mute:#9a9590;--c-edge:#2e2e32;--c-border:#e8e4dc;--c-surface:#222224;--c-surface-alt:#18181a;--c-arc:#3a3a40;--c-bar:#000;--c-bar-muted:#888;--c-bar-faint:#555;--c-overlay:rgba(0,0,0,.82);--c-modal:#1e1e21;--c-input-bg:#141416;--c-input-border:#3a3a40;--c-focus:#e8e4dc;--c-toast-bg:#e8e4dc;--c-toast-fg:#111;--c-approx-bg:#2a2818;--c-approx-border:#4a4428;--c-approx-fg:#c8b878;--c-error-bg:#2a1818;--c-error-border:#5a3030;--c-error-fg:#e88a80;--c-shadow:rgba(0,0,0,.45);--live:#2bb88a;--custom:#5a7ab0}
+:root,[data-theme=light]{color-scheme:light;font-size:calc(clamp(15px,3.8vw,18px) * var(--font-scale, 1));--mono:"Courier New",monospace;--serif:Georgia,serif;--c-bg:#f5f3ec;--c-bg-outer:#ebe9e1;--c-card:#fff;--c-ink:#1a1a1a;--c-mute:#888;--c-edge:#e8e4dc;--c-border:#111;--c-surface:#fafaf8;--c-surface-alt:#f5f3ec;--c-arc:#e8e4dc;--c-bar:#0d0d0d;--c-bar-muted:#666;--c-bar-faint:#444;--c-overlay:rgba(0,0,0,.65);--c-modal:#fff;--c-input-bg:#fafaf8;--c-input-border:#ddd;--c-focus:#111;--c-toast-bg:#111;--c-toast-fg:#fff;--c-approx-bg:#faf6e8;--c-approx-border:#e8d9a8;--c-approx-fg:#8a7340;--c-error-bg:#fff8f7;--c-error-border:#f5c6c2;--c-error-fg:#c0392b;--c-shadow:rgba(0,0,0,.1);--c-top-h:76px;--c-bot-h:66px;--live:#1d9e75;--live-dot:#ffffff;--custom:#3d5a8a;}
+[data-theme=dark]{color-scheme:dark;--c-bg:#0f0f10;--c-bg-outer:#080809;--c-card:#1a1a1c;--c-ink:#f0ede6;--c-mute:#9a9590;--c-edge:#2e2e32;--c-border:#e8e4dc;--c-surface:#222224;--c-surface-alt:#18181a;--c-arc:#3a3a40;--c-bar:#000;--c-bar-muted:#888;--c-bar-faint:#555;--c-overlay:rgba(0,0,0,.82);--c-modal:#1e1e21;--c-input-bg:#141416;--c-input-border:#3a3a40;--c-focus:#e8e4dc;--c-toast-bg:#e8e4dc;--c-toast-fg:#111;--c-approx-bg:#2a2818;--c-approx-border:#4a4428;--c-approx-fg:#c8b878;--c-error-bg:#2a1818;--c-error-border:#5a3030;--c-error-fg:#e88a80;--c-shadow:rgba(0,0,0,.45);--live:#2bb88a;--live-dot:#ffffff;--custom:#5a7ab0}
 html{height:100%}
 body{background:var(--c-bg);font-family:var(--serif);color:var(--c-ink);min-height:100%;padding-top:calc(var(--c-top-h) + env(safe-area-inset-top,0px));padding-bottom:calc(var(--c-bot-h) + env(safe-area-inset-bottom,0px));transition:background .2s ease,color .2s ease}
 .card{background:var(--c-card);width:100%;max-width:560px;margin:0 auto;box-shadow:none;transition:background .2s ease}
@@ -28,6 +28,26 @@ body{background:var(--c-bg);font-family:var(--serif);color:var(--c-ink);min-heig
 .settings-item:last-child{border-bottom:none}
 .settings-item:active{background:var(--c-edge)}
 .settings-item[aria-pressed="true"]{color:var(--live);font-weight:700}
+.settings-fontsize{display:flex;align-items:center;gap:.6rem;padding:.85rem 1rem;border-bottom:.5px solid var(--c-edge)}
+.settings-fontsize .settings-label{flex:1}
+.fontsize-controls{display:flex;gap:.4rem}
+.fontsize-controls button{width:34px;height:34px;border-radius:8px;border:1px solid var(--c-edge);background:var(--c-surface-alt);color:var(--c-ink);font-family:var(--mono);font-size:.62rem;cursor:pointer}
+.fontsize-controls button:active{background:var(--c-edge)}
+.fontsize-controls button:disabled{opacity:.35;cursor:not-allowed}
+.settings-support{padding:.7rem 1rem;background:var(--c-surface-alt);text-align:center}
+.settings-support a{font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;color:var(--c-mute);text-decoration:none}
+.settings-support a:active{opacity:.6}
+.fav-list{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem;max-height:9rem;overflow-y:auto}
+.fav-item{display:flex;align-items:center;gap:.5rem;padding:.55rem .7rem;border-radius:10px;background:var(--c-surface-alt);border:1px solid var(--c-edge)}
+.fav-item button.fav-load{flex:1;background:none;border:none;text-align:left;font-family:var(--mono);font-size:.68rem;color:var(--c-ink);cursor:pointer;display:flex;flex-direction:column;gap:.1rem}
+.fav-item .fav-load-date{font-size:.56rem;color:var(--c-mute)}
+.fav-item button.fav-del{background:none;border:none;color:var(--c-mute);font-size:.9rem;cursor:pointer;padding:.2rem .4rem;flex-shrink:0}
+.fav-empty{font-family:var(--mono);font-size:.6rem;color:var(--c-mute);text-align:center;padding:.4rem 0 1rem}
+.fav-save-row{display:flex;gap:.5rem;margin:.9rem 0 0}
+.fav-save-row input{flex:1;padding:.65rem .7rem;border-radius:10px;border:1px solid var(--c-input-border);background:var(--c-input-bg);color:var(--c-ink);font-family:var(--mono);font-size:.68rem}
+.fav-save-row button{background:var(--c-surface-alt);border:1px solid var(--c-edge);border-radius:10px;padding:.65rem .8rem;font-family:var(--mono);font-size:.62rem;color:var(--c-ink);cursor:pointer;white-space:nowrap}
+.fav-save-row button:active{background:var(--c-edge)}
+.fav-save-row button:disabled{opacity:.4;cursor:not-allowed}
 .btn-date{background:var(--c-border);color:var(--c-card);border:none;padding:.6rem .9rem}.btn-mode{background:var(--c-surface-alt);color:var(--c-ink);border:1.5px solid var(--c-edge)}
 .bar-earth.spin .sym{display:inline-block;animation:spin-once .55s ease}
 @keyframes spin-once{from{transform:rotate(0)}to{transform:rotate(360deg)}}#diorama.diorama-pulse{animation:diorama-pulse .45s ease}@keyframes diorama-pulse{0%{opacity:1}40%{opacity:.55}100%{opacity:1}}
@@ -45,7 +65,7 @@ body{background:var(--c-bg);font-family:var(--serif);color:var(--c-ink);min-heig
 .bar-earth:not([aria-pressed="true"]){color:var(--c-bar-muted)}
 .bar-date-block{background:none;border:none;padding:.4rem 0 .4rem .3rem;cursor:pointer;justify-self:end;text-align:right;border-radius:8px}
 .bar-date-block:active,.bar-earth:active{opacity:.6}
-.bar-time{font-size:1.45rem;letter-spacing:.08em;font-family:var(--mono);color:#fff;font-weight:300;text-align:center;font-variant-numeric:tabular-nums}.bar-time--placeholder{opacity:.35}.bar-date{font-size:.6rem;color:var(--c-bar-muted);font-family:var(--mono);letter-spacing:.04em;text-align:right;line-height:1.6}.bar-tz{font-size:.54rem;color:var(--c-bar-faint);font-family:var(--mono);letter-spacing:.04em;text-align:right}.bar-dot{width:8px;height:8px;border-radius:50%;background:var(--live);flex-shrink:0;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.bar-time{font-size:1.45rem;letter-spacing:.08em;font-family:var(--mono);color:#fff;font-weight:300;text-align:center;font-variant-numeric:tabular-nums}.bar-time--placeholder{opacity:.35}.bar-date{font-size:.6rem;color:#fff;font-family:var(--mono);letter-spacing:.04em;text-align:right;line-height:1.6}.bar-tz{font-size:.54rem;color:rgba(255,255,255,.65);font-family:var(--mono);letter-spacing:.04em;text-align:right}.bar-dot{width:8px;height:8px;border-radius:50%;background:var(--live-dot);flex-shrink:0;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .bar-date-block.date-active .bar-date{color:#fff}.bar-earth[aria-pressed="true"] .bar-dot{animation:pulse 2s infinite}.bar-earth:not([aria-pressed="true"]) .bar-dot{animation:none;opacity:.3}
 .modal-overlay{position:fixed;inset:0;background:var(--c-overlay);display:none;justify-content:center;align-items:flex-end;z-index:300}.modal-overlay.open{display:flex}.modal-box{background:var(--c-modal);border-radius:20px 20px 0 0;padding:1.5rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom,0px));width:100%;max-width:560px;box-shadow:0 -4px 32px var(--c-shadow);color:var(--c-ink);transition:background .2s ease}.modal-box:before{content:"";display:block;width:2.5rem;height:4px;background:var(--c-edge);border-radius:2px;margin:0 auto .9rem}.modal-title{font-size:.92rem;font-weight:700;letter-spacing:.12em;font-family:var(--mono);margin-bottom:.35rem;color:var(--c-ink)}.modal-sub{font-size:.64rem;color:var(--c-mute);font-family:var(--mono);letter-spacing:.04em;margin-bottom:1.25rem;line-height:1.65}
 .field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.9rem}.field label{font-size:.62rem;letter-spacing:.1em;color:var(--c-mute);font-family:var(--mono)}.field input{border:1.5px solid var(--c-input-border);border-radius:10px;padding:.8rem .95rem;font-family:var(--mono);font-size:1rem;color:var(--c-ink);outline:none;transition:border .15s;background:var(--c-input-bg);min-height:48px}.field input:focus{border-color:var(--c-focus)}.field small{font-size:.58rem;color:var(--c-approx-fg);font-family:var(--mono);letter-spacing:.04em;line-height:1.5}
@@ -110,9 +130,20 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
       </div>
     </div>
     <div class="settings-menu" id="settings-menu" hidden>
+      <div class="settings-item settings-fontsize">
+        <span class="sym" aria-hidden>Aa</span>
+        <span class="settings-label">Tamaño de letra</span>
+        <div class="fontsize-controls">
+          <button type="button" id="font-dec" aria-label="Reducir tamaño de letra">A−</button>
+          <button type="button" id="font-inc" aria-label="Aumentar tamaño de letra">A+</button>
+        </div>
+      </div>
       <button type="button" class="settings-item" id="menu-theme"><span class="sym" aria-hidden>●</span><span class="settings-label">Modo oscuro</span></button>
       <button type="button" class="settings-item" id="menu-tabla" aria-pressed="false"><span class="sym" aria-hidden>▤</span><span class="settings-label">Ver como tabla</span></button>
       <button type="button" class="settings-item" id="menu-export"><span class="sym" aria-hidden>↓</span><span class="settings-label">Exportar</span></button>
+      <div class="settings-support">
+        <a href="https://link.mercadopago.cl/psicoandino" target="_blank" rel="noopener">♡ Colaborar con Astransys</a>
+      </div>
     </div>
   </header>
 
@@ -149,7 +180,6 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
   </section>
 
   <footer class="sticky-bar" aria-label="Reloj local">
-    <a class="bar-support" href="https://link.mercadopago.cl/psicoandino" target="_blank" rel="noopener" aria-label="Colaborar con Astransys" title="Colaborar con Astransys">♡</a>
     <div class="bar-inner">
       <button type="button" class="bar-earth" id="bar-live-btn" aria-label="Volver a tiempo real" title="Volver a tiempo real" aria-pressed="true"><span class="bar-dot" aria-hidden></span><span class="sym" aria-hidden>⊕</span> EARTH</button>
       <time class="bar-time" datetime="">00:00:00</time>
@@ -164,6 +194,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <h2 id="modal-title" class="modal-title">CALCULAR POSICIONES</h2>
       <p class="modal-sub">Elige una fecha. La hora es opcional; sin ella, los cuerpos rápidos se marcan como aproximados.</p>
+      <div id="fav-list" class="fav-list"></div>
       <div class="field">
         <label for="input-date">FECHA</label>
         <input id="input-date" type="date" aria-invalid="false">
@@ -173,6 +204,10 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
         <label for="input-time">HORA (opcional)</label>
         <input id="input-time" type="time">
         <small>Luna, Mercurio y Venus dependen de la hora exacta.</small>
+      </div>
+      <div class="fav-save-row">
+        <input type="text" id="fav-name-input" maxlength="13" placeholder="Nombre (máx. 13)" aria-label="Nombre para guardar esta fecha">
+        <button type="button" id="fav-save-btn">★ Guardar</button>
       </div>
       <div class="modal-actions modal-actions--dual">
         <button type="button" class="btn-cancel">CANCELAR</button>
@@ -416,6 +451,24 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
       if (btn) { const orig = btn.textContent; btn.textContent = "✓ COPIADO"; setTimeout(() => { btn.textContent = orig; }, 1600); }
     }).catch(() => setToast("No se pudo copiar — copialo manualmente"));
   }
+  const FONT_SCALES = [0.9, 1, 1.1, 1.2, 1.3];
+  let fontScaleIndex = 1;
+  function getStoredFontScaleIndex() {
+    try {
+      const v = parseInt(localStorage.getItem("true-spaces-font-idx"), 10);
+      return FONT_SCALES[v] !== undefined ? v : 1;
+    } catch { return 1; }
+  }
+  function applyFontScale(index) {
+    fontScaleIndex = Math.max(0, Math.min(FONT_SCALES.length - 1, index));
+    document.documentElement.style.setProperty("--font-scale", FONT_SCALES[fontScaleIndex]);
+    try { localStorage.setItem("true-spaces-font-idx", String(fontScaleIndex)); } catch {}
+    const decBtn = document.getElementById("font-dec");
+    const incBtn = document.getElementById("font-inc");
+    if (decBtn) decBtn.disabled = fontScaleIndex === 0;
+    if (incBtn) incBtn.disabled = fontScaleIndex === FONT_SCALES.length - 1;
+    syncTopHeight();
+  }
   function toggleSettingsMenu() {
     const open = el.settingsMenu.classList.toggle("open");
     el.settingsMenu.hidden = !open;
@@ -500,6 +553,65 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     el.barDate.textContent = `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
     el.barTz.textContent = `UTC ${tz}`;
   }
+  const FAV_KEY = "true-spaces-favorites", FAV_MAX = 100;
+  function getFavorites() {
+    try {
+      const list = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
+      return Array.isArray(list) ? list : [];
+    } catch { return []; }
+  }
+  function saveFavorites(list) {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(list)); } catch {}
+  }
+  function renderFavList() {
+    const list = getFavorites();
+    const favListEl = document.getElementById("fav-list");
+    if (!favListEl) return;
+    if (!list.length) {
+      favListEl.innerHTML = `<p class="fav-empty">Sin fechas guardadas todavía.</p>`;
+      return;
+    }
+    favListEl.innerHTML = list.map((f, i) => `
+      <div class="fav-item">
+        <button type="button" class="fav-load" data-idx="${i}">
+          <span>★ ${esc(f.name)}</span>
+          <span class="fav-load-date">${esc(f.date)}${f.time ? " · " + esc(f.time) : ""}</span>
+        </button>
+        <button type="button" class="fav-del" data-idx="${i}" aria-label="Borrar ${esc(f.name)}">×</button>
+      </div>`).join("");
+    favListEl.querySelectorAll(".fav-load").forEach(btn => {
+      btn.addEventListener("click", () => loadFavorite(Number(btn.dataset.idx)));
+    });
+    favListEl.querySelectorAll(".fav-del").forEach(btn => {
+      btn.addEventListener("click", () => deleteFavorite(Number(btn.dataset.idx)));
+    });
+  }
+  function saveFavoriteFromInputs() {
+    const name = document.getElementById("fav-name-input").value.trim();
+    if (!name) { setToast("Ponele un nombre primero"); return; }
+    if (!el.inputDate.value) { setToast("Elegí una fecha primero"); return; }
+    const list = getFavorites();
+    if (list.length >= FAV_MAX) { setToast(`Máximo de ${FAV_MAX} favoritos alcanzado`); return; }
+    list.push({ name: name.slice(0, 13), date: el.inputDate.value, time: el.inputTime.value || "" });
+    saveFavorites(list);
+    document.getElementById("fav-name-input").value = "";
+    renderFavList();
+    setToast(`${UI.ok} guardado`);
+  }
+  function loadFavorite(index) {
+    const list = getFavorites();
+    const f = list[index];
+    if (!f) return;
+    el.inputDate.value = f.date;
+    el.inputTime.value = f.time || "";
+    applyDate();
+  }
+  function deleteFavorite(index) {
+    const list = getFavorites();
+    list.splice(index, 1);
+    saveFavorites(list);
+    renderFavList();
+  }
   function openModal() {
     el.dateError.hidden = true;
     el.dateError.textContent = "";
@@ -511,6 +623,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
     el.modal.setAttribute("aria-hidden", "false");
     el.date.setAttribute("aria-expanded", "true");
     document.body.classList.add("modal-open");
+    renderFavList();
     setTimeout(() => el.inputDate.focus(), 50);
   }
   function closeModal() {
@@ -687,6 +800,8 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
   el.share.addEventListener("click", () => { captureAndShare(); closeSettingsMenu(); });
   el.tabla.addEventListener("click", () => { tableMode = !tableMode; render(); closeSettingsMenu(); });
   el.settingsBtn.addEventListener("click", toggleSettingsMenu);
+  document.getElementById("font-dec").addEventListener("click", () => applyFontScale(fontScaleIndex - 1));
+  document.getElementById("font-inc").addEventListener("click", () => applyFontScale(fontScaleIndex + 1));
   document.addEventListener("click", e => {
     if (!el.settingsMenu.classList.contains("open")) return;
     if (e.target === el.settingsBtn || el.settingsBtn.contains(e.target)) return;
@@ -695,6 +810,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
   });
   el.cancel.addEventListener("click", closeModal);
   el.go.addEventListener("click", applyDate);
+  document.getElementById("fav-save-btn").addEventListener("click", saveFavoriteFromInputs);
   el.inputDate.addEventListener("input", () => {
     el.dateError.hidden = true;
     el.inputDate.setAttribute("aria-invalid", "false");
@@ -710,6 +826,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--c-focus);outlin
   });
 
   applyTheme(getStoredTheme());
+  applyFontScale(getStoredFontScaleIndex());
   mounted = true;
   syncTopHeight();
   window.addEventListener("resize", syncTopHeight);
